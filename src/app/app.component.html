@@ -1,29 +1,12 @@
-<h1>Demo</h1>
-  <div class="form-group" *ngFor="let field of accountsData" (ngSubmit)="save(accountsForm.value, accountsForm.valid)">
-    <label [attr.for]="field.name">{{field.name}}</label>
-    <input *ngIf="!field.options"
-           [(ngModel)]="field.value" type={{field.inputType}} class="form-control" id = "{{field.name}}">
-    <div>
-      <select class="form-control" *ngIf="field && field.options">
-        <option *ngFor="let option of field?.options" [value]="option" [selected]="field.value == option">{{option}}</option>
-      </select>
+<div class="header">
+  <h1>Account options</h1>
+</div>
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" routerLink="" routerLinkActive="active">Edit</a>
+      <a class="nav-item nav-link" routerLink="/readonly" routerLinkActive="active">View</a>
     </div>
   </div>
-<button (click)="load()">Load data</button>
-<button type="submit">Save data</button>
-<!--
-<div class="input-group" *ngFor="let field of accountsData">
-  <span class="input-group-addon">{{field.name}}</span>
-  <input [(ngModel)]="field.value" type={{field.inputType}} class="form-control" aria-label="Amount (to the nearest dollar)">
-</div>
--->
-
-
-
-
-<!--
-
-<div *ngFor="let field of accountsData">
-  {{field.name}} / {{field.value}} / {{field.inputType}} / {{field.options}}
-</div>
--->
+</nav>
+<router-outlet></router-outlet>

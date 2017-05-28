@@ -1,10 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="container">
+  <form id="account-options-form" (ngSubmit)="onSubmit()" #accountOptionsFrom="ngForm">
+    <div class="checkbox">
+      <label for="verifyEmail">Verify Email</label>
+      <input [disabled]="isReadOnlyMode" type="checkbox" id="verifyEmail"
+             [(ngModel)]="model && model.verifyEmail" name="verifyEmail">
+    </div>
+    <div class="checkbox">
+      <label for="verifyProviderEmail">Verify Provider Email</label>
+      <input [disabled]="isReadOnlyMode" type="checkbox" id="verifyProviderEmail"
+             [(ngModel)]="model && model.verifyProviderEmail" name="verifyProviderEmail">
+    </div>
+    <div class="checkbox">
+      <label for="allowUnverifiedLogin">Allow Unverified Login</label>
+      <input [disabled]="isReadOnlyMode" type="checkbox" id="allowUnverifiedLogin"
+             [(ngModel)]="model && model.allowUnverifiedLogin" name="allowUnverifiedLogin">
+    </div>
+    <div class="checkbox">
+      <label for="preventLoginIDHarvesting">Prevent LoginID Harvesting</label>
+      <input [disabled]="isReadOnlyMode" type="checkbox" id="preventLoginIDHarvesting"
+             [(ngModel)]="model && model.preventLoginIDHarvesting" name="preventLoginIDHarvesting">
+    </div>
+    <div class="checkbox">
+      <label for="sendWelcomeEmail">Send Welcome Email</label>
+      <input [disabled]="isReadOnlyMode" type="checkbox" id="sendWelcomeEmail"
+             [(ngModel)]="model && model.sendWelcomeEmail" name="sendWelcomeEmail">
+    </div>
+    <div class="checkbox">
+      <label for="sendAccountDeletedEmail">Send Account Deleted Email</label>
+      <input [disabled]="isReadOnlyMode" type="checkbox" id="sendAccountDeletedEmail"
+             [(ngModel)]="model && model.sendAccountDeletedEmail" name="sendAccountDeletedEmail">
+    </div>
+    <div class="form-group">
+      <label for="defaultLanguage">Default Language</label>
+      <input [disabled]="isReadOnlyMode" type="text" class="form-control" id="defaultLanguage"
+             [(ngModel)]="model && model.defaultLanguage" name="defaultLanguage">
+    </div>
+    <div class="form-group">
+      <label for="loginIdentifierConflict">Login Identifier Conflict</label>
+      <select [disabled]="isReadOnlyMode" class="form-control"  id="loginIdentifierConflict" *ngIf="model"
+              [(ngModel)]="model && model.loginIdentifierConflict" name="loginIdentifierConflict">
+        <option *ngFor="let option of model.loginIdentifierConflictOptions" [value]="option">{{option}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="loginIdentifiers">Login Identifiers</label>
+      <input [disabled]="isReadOnlyMode" type="text" class="form-control" id="loginIdentifiers"
+             [(ngModel)]="model && model.loginIdentifiers" name="loginIdentifiers">
+    </div>
+    <button [disabled]="isReadOnlyMode" type="submit" class="btn btn-success">Save</button>
+
+  </form>
+  <div id="account-options-error">
+    <div class="alert alert-danger" *ngIf="errorMessage">
+    <input type="text" class="form-control" id="errorInfo"
+           [(ngModel)]="errorMessage" name="errorInfo" disabled>
+  </div>
+  </div>
+</div>
+

@@ -10,7 +10,6 @@ namespace AccountEnums {
 
 }
 
-
 @Injectable()
 export class Utils {
 
